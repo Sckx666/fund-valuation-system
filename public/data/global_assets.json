@@ -1,0 +1,1049 @@
+{
+  "last_updated": "2026-01-31 21:14:59",
+  "total_count": 57,
+  "success_count": 1,
+  "assets": [
+    {
+      "code": "BTC",
+      "name": "比特币",
+      "market": "crypto",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "ETH",
+      "name": "以太坊",
+      "market": "crypto",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "BNB",
+      "name": "币安币",
+      "market": "crypto",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "SOL",
+      "name": "索拉纳",
+      "market": "crypto",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "XRP",
+      "name": "瑞波币",
+      "market": "crypto",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "ADA",
+      "name": "艾达币",
+      "market": "crypto",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "DOGE",
+      "name": "狗狗币",
+      "market": "crypto",
+      "price": 0.0,
+      "change_pct": -0.61,
+      "data_source": "CoinGecko",
+      "success": true
+    },
+    {
+      "code": "AVAX",
+      "name": "雪崩",
+      "market": "crypto",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "DOT",
+      "name": "波卡",
+      "market": "crypto",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "MATIC",
+      "name": "Polygon",
+      "market": "crypto",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "AAPL",
+      "name": "苹果",
+      "market": "stock_us",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "MSFT",
+      "name": "微软",
+      "market": "stock_us",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "GOOGL",
+      "name": "谷歌",
+      "market": "stock_us",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "AMZN",
+      "name": "亚马逊",
+      "market": "stock_us",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "META",
+      "name": "Meta",
+      "market": "stock_us",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "NVDA",
+      "name": "英伟达",
+      "market": "stock_us",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "TSLA",
+      "name": "特斯拉",
+      "market": "stock_us",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "AMD",
+      "name": "AMD",
+      "market": "stock_us",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "INTC",
+      "name": "英特尔",
+      "market": "stock_us",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "NFLX",
+      "name": "奈飞",
+      "market": "stock_us",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "BABA",
+      "name": "阿里巴巴",
+      "market": "stock_us",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "JD",
+      "name": "京东",
+      "market": "stock_us",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "PDD",
+      "name": "拼多多",
+      "market": "stock_us",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "NIO",
+      "name": "蔚来",
+      "market": "stock_us",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "BIDU",
+      "name": "百度",
+      "market": "stock_us",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "V",
+      "name": "Visa",
+      "market": "stock_us",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "MA",
+      "name": "万事达",
+      "market": "stock_us",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "DIS",
+      "name": "迪士尼",
+      "market": "stock_us",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "COIN",
+      "name": "Coinbase",
+      "market": "stock_us",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "SQ",
+      "name": "Block",
+      "market": "stock_us",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "^GSPC",
+      "name": "标普500",
+      "market": "index",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "^DJI",
+      "name": "道琼斯",
+      "market": "index",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "^IXIC",
+      "name": "纳斯达克",
+      "market": "index",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "^NDX",
+      "name": "纳斯达克100",
+      "market": "index",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "^RUT",
+      "name": "罗素2000",
+      "market": "index",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "^FTSE",
+      "name": "富时100",
+      "market": "index",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "^GDAXI",
+      "name": "德国DAX",
+      "market": "index",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "^N225",
+      "name": "日经225",
+      "market": "index",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "^HSI",
+      "name": "恒生指数",
+      "market": "index",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "000001.SS",
+      "name": "上证指数",
+      "market": "index",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "GC=F",
+      "name": "黄金期货",
+      "market": "commodity",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "SI=F",
+      "name": "白银期货",
+      "market": "commodity",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "CL=F",
+      "name": "原油期货",
+      "market": "commodity",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "NG=F",
+      "name": "天然气期货",
+      "market": "commodity",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "HG=F",
+      "name": "铜期货",
+      "market": "commodity",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "EURUSD=X",
+      "name": "欧元/美元",
+      "market": "forex",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "GBPUSD=X",
+      "name": "英镑/美元",
+      "market": "forex",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "JPYUSD=X",
+      "name": "日元/美元",
+      "market": "forex",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "CNYUSD=X",
+      "name": "人民币/美元",
+      "market": "forex",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "SPY",
+      "name": "标普500 ETF",
+      "market": "etf",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "QQQ",
+      "name": "纳斯达克100 ETF",
+      "market": "etf",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "IWM",
+      "name": "罗素2000 ETF",
+      "market": "etf",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "VTI",
+      "name": "全市场ETF",
+      "market": "etf",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "GLD",
+      "name": "黄金ETF",
+      "market": "etf",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "004046",
+      "name": "华安纳斯达克100",
+      "market": "fund_qdii",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "161125",
+      "name": "易方达标普500",
+      "market": "fund_qdii",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    },
+    {
+      "code": "270042",
+      "name": "广发纳斯达克100",
+      "market": "fund_qdii",
+      "price": 0,
+      "change_pct": 0,
+      "data_source": "无",
+      "success": false
+    }
+  ],
+  "grouped": {
+    "crypto": [
+      {
+        "code": "BTC",
+        "name": "比特币",
+        "market": "crypto",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "ETH",
+        "name": "以太坊",
+        "market": "crypto",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "BNB",
+        "name": "币安币",
+        "market": "crypto",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "SOL",
+        "name": "索拉纳",
+        "market": "crypto",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "XRP",
+        "name": "瑞波币",
+        "market": "crypto",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "ADA",
+        "name": "艾达币",
+        "market": "crypto",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "DOGE",
+        "name": "狗狗币",
+        "market": "crypto",
+        "price": 0.0,
+        "change_pct": -0.61,
+        "data_source": "CoinGecko",
+        "success": true
+      },
+      {
+        "code": "AVAX",
+        "name": "雪崩",
+        "market": "crypto",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "DOT",
+        "name": "波卡",
+        "market": "crypto",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "MATIC",
+        "name": "Polygon",
+        "market": "crypto",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      }
+    ],
+    "stock_us": [
+      {
+        "code": "AAPL",
+        "name": "苹果",
+        "market": "stock_us",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "MSFT",
+        "name": "微软",
+        "market": "stock_us",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "GOOGL",
+        "name": "谷歌",
+        "market": "stock_us",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "AMZN",
+        "name": "亚马逊",
+        "market": "stock_us",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "META",
+        "name": "Meta",
+        "market": "stock_us",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "NVDA",
+        "name": "英伟达",
+        "market": "stock_us",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "TSLA",
+        "name": "特斯拉",
+        "market": "stock_us",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "AMD",
+        "name": "AMD",
+        "market": "stock_us",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "INTC",
+        "name": "英特尔",
+        "market": "stock_us",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "NFLX",
+        "name": "奈飞",
+        "market": "stock_us",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "BABA",
+        "name": "阿里巴巴",
+        "market": "stock_us",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "JD",
+        "name": "京东",
+        "market": "stock_us",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "PDD",
+        "name": "拼多多",
+        "market": "stock_us",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "NIO",
+        "name": "蔚来",
+        "market": "stock_us",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "BIDU",
+        "name": "百度",
+        "market": "stock_us",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "V",
+        "name": "Visa",
+        "market": "stock_us",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "MA",
+        "name": "万事达",
+        "market": "stock_us",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "DIS",
+        "name": "迪士尼",
+        "market": "stock_us",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "COIN",
+        "name": "Coinbase",
+        "market": "stock_us",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "SQ",
+        "name": "Block",
+        "market": "stock_us",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      }
+    ],
+    "index": [
+      {
+        "code": "^GSPC",
+        "name": "标普500",
+        "market": "index",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "^DJI",
+        "name": "道琼斯",
+        "market": "index",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "^IXIC",
+        "name": "纳斯达克",
+        "market": "index",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "^NDX",
+        "name": "纳斯达克100",
+        "market": "index",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "^RUT",
+        "name": "罗素2000",
+        "market": "index",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "^FTSE",
+        "name": "富时100",
+        "market": "index",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "^GDAXI",
+        "name": "德国DAX",
+        "market": "index",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "^N225",
+        "name": "日经225",
+        "market": "index",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "^HSI",
+        "name": "恒生指数",
+        "market": "index",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "000001.SS",
+        "name": "上证指数",
+        "market": "index",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      }
+    ],
+    "commodity": [
+      {
+        "code": "GC=F",
+        "name": "黄金期货",
+        "market": "commodity",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "SI=F",
+        "name": "白银期货",
+        "market": "commodity",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "CL=F",
+        "name": "原油期货",
+        "market": "commodity",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "NG=F",
+        "name": "天然气期货",
+        "market": "commodity",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "HG=F",
+        "name": "铜期货",
+        "market": "commodity",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      }
+    ],
+    "forex": [
+      {
+        "code": "EURUSD=X",
+        "name": "欧元/美元",
+        "market": "forex",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "GBPUSD=X",
+        "name": "英镑/美元",
+        "market": "forex",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "JPYUSD=X",
+        "name": "日元/美元",
+        "market": "forex",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "CNYUSD=X",
+        "name": "人民币/美元",
+        "market": "forex",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      }
+    ],
+    "etf": [
+      {
+        "code": "SPY",
+        "name": "标普500 ETF",
+        "market": "etf",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "QQQ",
+        "name": "纳斯达克100 ETF",
+        "market": "etf",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "IWM",
+        "name": "罗素2000 ETF",
+        "market": "etf",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "VTI",
+        "name": "全市场ETF",
+        "market": "etf",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "GLD",
+        "name": "黄金ETF",
+        "market": "etf",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      }
+    ],
+    "fund_qdii": [
+      {
+        "code": "004046",
+        "name": "华安纳斯达克100",
+        "market": "fund_qdii",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "161125",
+        "name": "易方达标普500",
+        "market": "fund_qdii",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      },
+      {
+        "code": "270042",
+        "name": "广发纳斯达克100",
+        "market": "fund_qdii",
+        "price": 0,
+        "change_pct": 0,
+        "data_source": "无",
+        "success": false
+      }
+    ]
+  }
+}
