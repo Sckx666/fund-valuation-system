@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌍 全球资产监控雷达</title>
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --border: #30363d;
+            --text-main: #c9d1d9;
+            --text-sub: #8b949e;
+            --accent: #58a6ff;
+            --up: #f78166;
+            --down: #7ee787;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-link {
+            color: var(--accent);
+            text-decoration: none;
+            padding: 8px 16px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        .nav-link:hover {
+            background: var(--card-bg);
+        }
+
+        .status-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-sub);
+            font-size: 0.9rem;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--down);
+            border-radius: 50%;
+            box-shadow: 0 0 5px var(--down);
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            padding-left: 10px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .asset-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 18px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .asset-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--text-sub);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .asset-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .asset-name {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .asset-code {
+            font-size: 0.75rem;
+            color: var(--text-sub);
+            font-family: monospace;
+            background-color: #0d1117;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .asset-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 10px 0;
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        .asset-change {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .up { color: var(--up); }
+        .down { color: var(--down); }
+
+        .market-badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            padding: 3px 8px;
+            background-color: #21262d;
+            border-radius: 4px;
+            color: var(--text-sub);
+            margin-top: 8px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-sub);
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--border);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .refresh-btn {
+            background-color: #238636;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .refresh-btn:hover {
+            background-color: #2ea043;
+        }
+
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #484f58;
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div>
+                <h1>🌍 全球资产监控雷达</h1>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">📊 基金估值</a>
+                <a href="global.html" class="nav-link">🌍 全球资产</a>
+            </div>
+            <div class="status-bar">
+                <span class="status-dot"></span>
+                <span id="lastUpdated">加载中...</span>
+                <button class="refresh-btn" onclick="loadData()">🔄 刷新</button>
+            </div>
+        </header>
+
+        <div id="content">
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>正在加载全球资产数据...</p>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>数据来源：Binance (加密货币) | Yahoo Finance (美股/指数/商品) | AkShare (A股)</p>
+            <p>24小时实时监控 | 多线程并发抓取 | 完全免费</p>
+        </footer>
+    </div>
+
+    <script>
+        const MARKET_NAMES = {
+            'crypto': '💰 加密货币',
+            'index': '📈 全球指数',
+            'stock_us': '🇺🇸 美股科技',
+            'commodity': '🛢️ 大宗商品',
+            'fund_qdii': '🌏 QDII基金',
+            'fund_cn': '🇨🇳 A股基金'
+        };
+
+        async function loadData() {
+            const contentDiv = document.getElementById('content');
+            
+            contentDiv.innerHTML = `
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>正在加载全球资产数据...</p>
+                </div>
+            `;
+
+            try {
+                const response = await fetch('./data/global_assets.json');
+                
+                if (!response.ok) {
+                    throw new Error('数据文件不存在');
+                }
+
+                const data = await response.json();
+                
+                document.getElementById('lastUpdated').textContent = `🕐 ${data.last_updated}`;
+                
+                renderAssets(data.grouped);
+                
+            } catch (error) {
+                console.error('加载失败:', error);
+                contentDiv.innerHTML = `
+                    <div class="loading">
+                        <h3>⚠️ 暂无数据</h3>
+                        <p>请运行 scripts/fetch_global_assets.py 生成数据</p>
+                    </div>
+                `;
+            }
+        }
+
+        function renderAssets(grouped) {
+            const contentDiv = document.getElementById('content');
+            let html = '';
+
+            for (const [market, assets] of Object.entries(grouped)) {
+                if (assets.length === 0) continue;
+
+                const successAssets = assets.filter(a => a.success);
+                if (successAssets.length === 0) continue;
+
+                html += `
+                    <div class="section">
+                        <h2 class="section-title">${MARKET_NAMES[market] || market}</h2>
+                        <div class="grid">
+                            ${successAssets.map(asset => renderAssetCard(asset)).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+
+            contentDiv.innerHTML = html || '<div class="loading"><p>暂无数据</p></div>';
+        }
+
+        function renderAssetCard(asset) {
+            const changeClass = asset.change_pct >= 0 ? 'up' : 'down';
+            const changeSign = asset.change_pct > 0 ? '+' : '';
+            
+            const priceDisplay = asset.price > 0 
+                ? `<div class="asset-price">$${asset.price.toLocaleString()}</div>`
+                : '';
+
+            return `
+                <div class="asset-card">
+                    <div class="asset-header">
+                        <div class="asset-name">${asset.name}</div>
+                        <div class="asset-code">${asset.code}</div>
+                    </div>
+                    ${priceDisplay}
+                    <div class="asset-change ${changeClass}">
+                        ${changeSign}${asset.change_pct.toFixed(2)}%
+                    </div>
+                    <div class="market-badge">${MARKET_NAMES[asset.market] || asset.market}</div>
+                </div>
+            `;
+        }
+
+        window.addEventListener('DOMContentLoaded', loadData);
+    </script>
+</body>
+</html>

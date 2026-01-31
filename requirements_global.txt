@@ -1,6 +1,7 @@
 akshare
-yfinance
-ccxt
 pandas
+numpy
 requests
 pytz
+yfinance
+ccxt
