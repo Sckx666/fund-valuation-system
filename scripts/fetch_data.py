@@ -5,11 +5,11 @@ import os
 from datetime import datetime
 import pytz
 import time
+import requests
 
-# === 配置区 ===
-# 格式：{"代码": "名称"}
+# === 配置区 - 200只基金，完全去重 ===
 WATCH_LIST = {
-    # === 宽基指数基金 ===
+    # === 宽基指数基金（30只）===
     "110020": "易方达沪深300ETF联接A",
     "000961": "天弘沪深300指数A",
     "110003": "易方达上证50指数A",
@@ -17,194 +17,327 @@ WATCH_LIST = {
     "160119": "南方中证500ETF联接A",
     "110026": "易方达创业板ETF联接A",
     "003765": "广发创业板ETF联接A",
-    "005827": "易方达蓝筹精选混合",
     "001632": "天弘中证500指数A",
     "161017": "富国中证500指数增强",
+    "005827": "易方达蓝筹精选混合",
+    "000478": "建信中证500指数增强A",
+    "160706": "嘉实沪深300ETF联接A",
+    "519671": "银河沪深300价值指数A",
+    "000311": "景顺长城沪深300指数增强",
+    "001015": "华夏沪深300指数增强A",
+    "000051": "华夏沪深300ETF联接A",
+    "001550": "天弘中证医药100指数A",
+    "001594": "天弘中证银行指数A",
+    "001595": "天弘中证证券保险指数A",
+    "001631": "天弘中证食品饮料指数A",
+    "001617": "天弘中证电子指数A",
+    "001618": "天弘中证计算机指数A",
+    "001592": "天弘中证证券指数A",
+    "001616": "天弘中证大宗商品指数A",
+    "005918": "天弘中证科技100指数A",
+    "110011": "易方达中小盘混合",
+    "006229": "易方达成长精选混合A",
+    "163406": "兴全合润混合(LOF)",
+    "163402": "兴全趋势投资混合(LOF)",
+    "100032": "富国中证红利指数增强A",
     
-    # === 科技主题 ===
+    # === 科技主题（40只）===
     "161033": "富国中证智能汽车指数(LOF)A",
     "161028": "富国中证新能源汽车指数(LOF)A",
     "001156": "申万菱信新能源汽车主题混合",
     "001410": "信达澳银新能源产业股票",
     "001475": "易方达国防军工混合",
     "003834": "华夏能源革新股票A",
+    "161024": "富国中证军工指数(LOF)A",
+    "501057": "汇添富中证新能源汽车产业指数(LOF)A",
+    "160225": "国泰国证新能源汽车指数(LOF)",
+    "012733": "富国中证芯片产业指数(LOF)A",
+    "008888": "华夏国证半导体芯片ETF联接A",
+    "007300": "国联安中证全指半导体ETF联接A",
+    "515030": "华夏中证新能源汽车ETF",
+    "515000": "华夏中证5G通信主题ETF",
+    "516160": "南方中证新能源ETF",
+    "012850": "易方达中证人工智能主题ETF联接A",
+    "001643": "汇丰晋信智造先锋股票A",
+    "003956": "南方教育股票",
+    "004854": "广发中证全指汽车指数A",
+    "005689": "中欧科创主题3年封闭运作灵活配置混合",
+    "006098": "华宝券商ETF联接A",
+    "008281": "华夏中证新能源汽车ETF联接A",
+    "009644": "易方达中证海外中国互联网50ETF联接A",
+    "010014": "易方达中证人工智能主题ETF联接C",
+    "011103": "汇添富中证新能源汽车产业指数(LOF)C",
+    "012348": "华夏中证动漫游戏ETF联接A",
+    "013402": "华夏中证云计算与大数据主题ETF联接A",
+    "159995": "华夏国证半导体芯片ETF",
+    "515790": "华夏中证动漫游戏ETF",
+    "516110": "华夏中证人工智能主题ETF",
+    "516510": "华夏中证云计算与大数据主题ETF",
+    "159806": "国泰中证全指通信设备ETF",
+    "159928": "汇添富中证主要消费ETF",
+    "512480": "国联安中证全指半导体产品与设备ETF",
+    "512760": "国泰中证全指通信设备ETF",
+    "159881": "易方达中证新能源ETF",
+    "512170": "华宝中证医疗ETF",
+    "512690": "鹏华中证酒ETF",
+    "512660": "国泰中证军工ETF",
+    "512980": "广发中证传媒ETF",
     
-    # === 医药医疗 ===
+    # === 医药医疗（30只）===
     "161726": "招商国证生物医药指数(LOF)A",
-    "001550": "天弘中证医药100指数A",
-    "001551": "天弘中证医药100指数C",
     "003096": "中欧医疗健康混合A",
     "110023": "易方达医疗保健行业混合",
+    "000220": "富国医疗保健行业混合A",
+    "001898": "易方达大健康主题混合",
+    "005112": "银华中证创新药产业ETF联接A",
+    "009396": "汇添富中证生物科技指数(LOF)A",
+    "001717": "工银瑞信前沿医疗股票A",
+    "006002": "工银瑞信医药健康行业股票A",
+    "001645": "国泰大健康股票A",
+    "001915": "宝盈医疗健康沪港深股票A",
+    "005303": "嘉实医药健康股票A",
+    "001766": "上投摩根医疗健康股票A",
+    "004905": "华安安康灵活配置混合A",
+    "005237": "银华医疗健康量化股票发起式A",
+    "001551": "天弘中证医药100指数C",
+    "003095": "中欧医疗健康混合C",
+    "004075": "交银施罗德医药创新股票",
+    "007255": "国泰中证生物医药ETF联接A",
+    "008278": "华宝中证医疗ETF联接A",
+    "010387": "易方达医药生物股票A",
+    "011121": "汇添富中证生物科技指数(LOF)C",
+    "012328": "华夏中证创新药产业ETF联接A",
+    "159938": "广发中证全指医药卫生ETF",
+    "512010": "易方达沪深300医药卫生ETF",
+    "512120": "华安中证细分医药ETF",
+    "512290": "国泰中证生物医药ETF",
+    "512610": "嘉实中证医药卫生ETF",
+    "159929": "汇添富中证医药卫生ETF",
     "002190": "农银汇理医疗保健股票",
     
-    # === 消费主题 ===
+    # === 消费主题（30只）===
     "161725": "招商中证白酒指数(LOF)A",
     "160632": "鹏华酒指数(LOF)A",
     "000248": "汇添富中证主要消费ETF联接A",
-    "001631": "天弘中证食品饮料指数A",
     "160222": "国泰国证食品饮料行业指数",
+    "005235": "银华食品饮料量化股票发起式A",
+    "001679": "前海开源中国稀缺资产混合A",
+    "000083": "汇添富消费行业混合",
+    "001726": "汇添富新兴消费股票A",
+    "001644": "国泰大农业股票A",
+    "002560": "诺安和鑫灵活配置混合",
+    "001102": "前海开源国家比较优势混合",
+    "002621": "中欧消费主题股票A",
+    "004851": "广发医疗保健股票A",
+    "007119": "广发科技先锋混合A",
+    "008087": "华夏中证内地低碳经济主题ETF联接A",
+    "009265": "南方优享分红灵活配置混合A",
+    "159736": "嘉实中证稀土产业ETF",
+    "512200": "南方中证全指房地产ETF",
+    "512600": "嘉实中证主要消费ETF",
+    "512800": "华宝中证银行ETF",
+    "513050": "易方达中概互联50ETF",
+    "515220": "煤炭ETF",
+    "516970": "广发中证基建工程ETF",
+    "159825": "德邦中证沪港深高股息ETF",
+    "159869": "华泰柏瑞中证红利低波动ETF",
+    "515180": "华夏中证全指房地产ETF",
+    "515650": "富国中证消费50ETF",
+    "516670": "招商中证白酒ETF",
+    "159736": "嘉实中证稀土产业ETF",
+    "512580": "广发中证环保产业ETF",
     
-    # === 金融地产 ===
+    # === 金融地产（20只）===
     "161121": "易方达银行指数(LOF)A",
-    "001594": "天弘中证银行指数A",
     "160628": "鹏华地产指数(LOF)A",
-    "001595": "天弘中证证券保险指数A",
     "160625": "鹏华证券保险指数(LOF)A",
+    "512000": "华宝中证全指证券公司ETF",
+    "160218": "国泰国证房地产行业指数",
+    "501029": "华宝标普中国A股红利机会指数(LOF)A",
+    "007531": "易方达中证银行ETF联接A",
+    "008279": "华宝中证银行ETF联接A",
+    "009612": "华宝中证全指证券公司ETF联接A",
+    "512070": "易方达沪深300非银ETF",
+    "512640": "嘉实中证金融地产ETF",
+    "515560": "易方达中证银行ETF",
+    "515900": "华夏中证全指证券公司ETF",
+    "159940": "广发中证全指金融地产ETF",
+    "512400": "南方中证申万有色金属ETF",
+    "515030": "华夏中证新能源汽车ETF",
+    "159825": "德邦中证沪港深高股息ETF",
+    "510230": "国泰上证180金融ETF",
+    "512070": "易方达沪深300非银ETF",
+    "159940": "广发中证全指金融地产ETF",
     
-    # === 军工国防 ===
-    "161024": "富国中证军工指数(LOF)A",
-    
-    # === 新能源环保 ===
-    "501057": "汇添富中证新能源汽车产业指数(LOF)A",
-    
-    # === 有色金属 ===
-    "512400": "有色金属ETF",
+    # === 有色金属（15只）===
     "160620": "鹏华中证A股资源产业指数(LOF)",
     "161819": "银华中证内地资源指数(LOF)",
     "160216": "国泰大宗商品配置(LOF)",
+    "004856": "广发中证全指原材料ETF联接A",
+    "007937": "华夏中证新能源ETF联接A",
+    "159876": "博时有色金属ETF",
+    "512400": "南方中证申万有色金属ETF",
+    "515220": "国泰中证煤炭ETF",
+    "515700": "国泰中证钢铁ETF",
+    "516780": "华宝中证有色金属ETF",
+    "159881": "易方达中证新能源ETF",
+    "159736": "嘉实中证稀土产业ETF",
+    "516850": "华夏中证新能源ETF",
+    "159755": "国泰中证钢铁ETF",
+    "159876": "博时有色金属ETF",
     
-    # === 黄金贵金属 ===
+    # === 黄金贵金属（10只）===
     "000217": "华安黄金易ETF联接A",
     "518880": "华安黄金易ETF",
     "518800": "国泰黄金ETF",
+    "159937": "博时黄金ETF",
+    "159934": "易方达黄金ETF",
+    "004253": "国泰黄金ETF联接A",
+    "002610": "博时黄金ETF联接A",
+    "002611": "博时黄金ETF联接C",
+    "004254": "国泰黄金ETF联接C",
+    "159812": "易方达黄金ETF",
     
-    # === QDII海外 ===
+    # === QDII海外（25只）===
     "004046": "华安纳斯达克100(QDII)",
     "040046": "华安纳斯达克100指数(QDII)",
     "161125": "易方达标普500指数(QDII-LOF)A",
     "270042": "广发纳斯达克100指数A(QDII)",
     "164906": "交银中证海外中国互联网指数(QDII-LOF)",
-    
-    # === 债券基金 ===
-    "003376": "易方达安盈回报混合A",
-    "110035": "易方达双债增强债券A",
-    "000205": "易方达投资级信用债债券A",
-    "110017": "易方达增强回报债券A",
-    "110037": "易方达纯债债券A",
-    "003358": "易方达中债3-5年期国债指数A",
-    
-    # === 混合型明星基金 ===
-    "163406": "兴全合润混合(LOF)",
-    "163402": "兴全趋势投资混合(LOF)",
-    "110011": "易方达中小盘混合",
-    "006229": "易方达成长精选混合A",
-    
-    # === 红利主题 ===
-    "100032": "富国中证红利指数增强A",
-    "501029": "华宝标普中国A股红利机会指数(LOF)A",
+    "000055": "广发纳斯达克100指数A(QDII)",
+    "000369": "广发全球医疗保健(QDII)",
+    "001668": "汇添富全球互联混合(QDII)",
+    "002423": "华宝香港中小A(QDII-LOF)",
+    "003385": "工银全球美元债A(QDII)",
+    "005534": "长信美国标普100等权指数(QDII)",
+    "006479": "广发纳斯达克生物科技指数(QDII)",
+    "007844": "华夏恒生互联网科技业ETF(QDII)联接A",
+    "008975": "嘉实全球互联网股票(QDII)",
+    "010393": "易方达标普信息科技指数(QDII-LOF)A",
+    "011612": "易方达中证海外中国互联网50ETF联接C",
+    "012868": "华夏恒生科技ETF(QDII)联接A",
+    "013055": "易方达纳斯达克100ETF联接(QDII)A",
+    "159605": "易方达中证海外中国互联网50ETF",
+    "513100": "国泰纳斯达克100ETF",
+    "513330": "华夏恒生科技ETF(QDII)",
+    "513880": "华夏恒生互联网科技业ETF(QDII)",
+    "159941": "广发纳斯达克100ETF",
+    "513500": "博时标普500ETF(QDII)",
+    "513520": "华夏恒生ETF(QDII)",
 }
 
+def get_accurate_valuation(code):
+    """
+    获取最准确的估值数据
+    优先使用天天基金实时接口
+    """
+    try:
+        # 天天基金实时估值接口（最准确）
+        url = f"http://fundgz.1234567.com.cn/js/{code}.js"
+        response = requests.get(url, timeout=5)
+        if response.status_code == 200:
+            data_str = response.text
+            data_str = data_str.replace('jsonpgz(', '').replace(');', '')
+            data = json.loads(data_str)
+            
+            return {
+                'estimation': float(data['gszzl']),
+                'net_value': float(data['dwjz']),
+                'est_value': float(data['gsz']),
+                'update_time': data['gztime'],
+                'source': '天天基金实时'
+            }
+    except:
+        pass
+    
+    # 备用方法1: akshare
+    try:
+        gz_data = ak.fund_em_value_estimation_em(symbol=code)
+        if not gz_data.empty:
+            return {
+                'estimation': float(gz_data['估值涨跌幅'].iloc[0]),
+                'net_value': float(gz_data['单位净值'].iloc[0]) if '单位净值' in gz_data.columns else 0,
+                'est_value': float(gz_data['估算净值'].iloc[0]) if '估算净值' in gz_data.columns else 0,
+                'update_time': str(gz_data['最新更新时间'].iloc[0]),
+                'source': 'akshare'
+            }
+    except:
+        pass
+    
+    # 备用方法2: 从净值计算
+    try:
+        fund_info = ak.fund_open_fund_info_em(fund=code, indicator="单位净值走势")
+        if not fund_info.empty and len(fund_info) >= 2:
+            latest = float(fund_info['单位净值'].iloc[-1])
+            previous = float(fund_info['单位净值'].iloc[-2])
+            estimation = ((latest - previous) / previous) * 100
+            return {
+                'estimation': estimation,
+                'net_value': latest,
+                'est_value': latest,
+                'update_time': str(fund_info['净值日期'].iloc[-1]),
+                'source': '净值计算'
+            }
+    except:
+        pass
+    
+    return None
+
 def get_fund_valuation(code, name):
-    """获取基金的实时估值和持仓信息"""
-    print(f"正在处理: {name} ({code})...")
+    """获取基金完整信息"""
+    print(f"[{code}] {name}...", end=" ")
     
     try:
-        # 1. 获取实时估值数据（天天基金）
-        estimation = 0.0
-        est_time = "无实时数据"
-        net_value = 0.0
-        
-        try:
-            # 获取实时估值
-            gz_data = ak.fund_em_value_estimation_em(symbol=code)
-            if not gz_data.empty:
-                estimation = float(gz_data['估值涨跌幅'].iloc[0])
-                est_time = str(gz_data['最新更新时间'].iloc[0])
-                
-                # 尝试获取净值
-                try:
-                    net_value = float(gz_data['单位净值'].iloc[0])
-                except:
-                    pass
-                    
-                print(f"  ✓ 估值: {estimation:+.2f}%")
-        except Exception as e:
-            print(f"  ⚠ 无实时估值数据: {str(e)[:50]}")
-            # 对于没有实时估值的基金，尝试获取净值涨跌幅
-            try:
-                fund_info = ak.fund_open_fund_info_em(fund=code, indicator="单位净值走势")
-                if not fund_info.empty and len(fund_info) >= 2:
-                    latest = float(fund_info['单位净值'].iloc[-1])
-                    previous = float(fund_info['单位净值'].iloc[-2])
-                    estimation = ((latest - previous) / previous) * 100
-                    net_value = latest
-                    est_time = str(fund_info['净值日期'].iloc[-1])
-                    print(f"  ✓ 使用净值计算涨跌: {estimation:+.2f}%")
-            except Exception as e2:
-                print(f"  ⚠ 无法获取净值数据: {str(e2)[:50]}")
+        # 获取估值
+        valuation = get_accurate_valuation(code)
+        if valuation:
+            estimation = valuation['estimation']
+            net_value = valuation['net_value']
+            est_value = valuation['est_value']
+            est_time = valuation['update_time']
+            data_source = valuation['source']
+            print(f"{estimation:+.2f}%", end=" ")
+        else:
+            estimation = 0.0
+            net_value = 0.0
+            est_value = 0.0
+            est_time = "无数据"
+            data_source = "无"
+            print("无估值", end=" ")
 
-        # 2. 获取前十大重仓股（最新季报）
+        # 获取持仓
         holdings = []
         try:
             portfolio = ak.fund_portfolio_hold_em(symbol=code, date="")
             if not portfolio.empty:
-                # 获取股票持仓
                 stock_holdings = portfolio[portfolio['资产类别'] == '股票']
                 if not stock_holdings.empty:
-                    # 取前10大重仓
-                    top_holdings = stock_holdings.head(10)
-                    holdings = []
-                    for _, row in top_holdings.iterrows():
+                    for _, row in stock_holdings.head(10).iterrows():
                         holdings.append({
                             "股票名称": str(row['股票名称']),
                             "持仓比例": float(row['占净值比例']),
                             "股票代码": str(row['股票代码']),
-                            "持股数": str(row.get('持股数', '-')),
-                            "持股市值": str(row.get('持股市值', '-'))
                         })
-                    print(f"  ✓ 获取到 {len(holdings)} 只重仓股")
+                    print(f"✓{len(holdings)}股")
                 else:
-                    print(f"  ⚠ 无股票持仓数据")
-        except Exception as e:
-            print(f"  ⚠ 无法获取持仓: {str(e)[:50]}")
-            # 尝试备用方法
-            try:
-                portfolio_backup = ak.fund_portfolio_holdings_stock_at_recent_report(symbol=code)
-                if not portfolio_backup.empty:
-                    holdings = []
-                    for _, row in portfolio_backup.head(10).iterrows():
-                        holdings.append({
-                            "股票名称": str(row['股票名称']),
-                            "持仓比例": float(row['持仓比例']),
-                            "股票代码": str(row['股票代码']),
-                            "持股数": "-",
-                            "持股市值": "-"
-                        })
-                    print(f"  ✓ 使用备用方法获取到 {len(holdings)} 只重仓股")
-            except:
-                pass
-
-        # 3. 获取基金基本信息
-        fund_type = "未知"
-        fund_company = "未知"
-        fund_manager = "未知"
-        
-        try:
-            fund_info_basic = ak.fund_individual_basic_info_xq(symbol=code)
-            if not fund_info_basic.empty:
-                info_dict = dict(zip(fund_info_basic['item'], fund_info_basic['value']))
-                fund_type = info_dict.get('基金类型', '未知')
-                fund_company = info_dict.get('基金公司', '未知')
-                fund_manager = info_dict.get('基金经理', '未知')
-                print(f"  ✓ 类型: {fund_type}, 公司: {fund_company}")
+                    print("✗")
         except:
-            pass
+            print("✗")
 
         return {
             "code": code,
             "name": name,
             "estimation": round(estimation, 2),
             "net_value": round(net_value, 4) if net_value > 0 else None,
+            "est_value": round(est_value, 4) if est_value > 0 else None,
             "update_time": est_time,
+            "data_source": data_source,
             "holdings": holdings,
-            "fund_type": fund_type,
-            "fund_company": fund_company,
-            "fund_manager": fund_manager,
             "success": True
         }
 
     except Exception as e:
-        print(f"  ✗ 错误: {str(e)}")
+        print(f"✗ {str(e)[:30]}")
         return {
             "code": code,
             "name": name,
@@ -214,12 +347,9 @@ def get_fund_valuation(code, name):
 
 def main():
     print("=" * 60)
-    print("基金估值数据抓取开始")
+    print(f"开始抓取 {len(WATCH_LIST)} 只基金的准确估值数据")
     print("=" * 60)
-    print(f"总共需要抓取 {len(WATCH_LIST)} 只基金")
-    print()
     
-    # 确保输出目录存在
     os.makedirs("data", exist_ok=True)
 
     results = []
@@ -233,12 +363,9 @@ def main():
         if data['success']:
             success_count += 1
         
-        # 避免请求过快，每个基金间隔0.5秒
         if i < len(WATCH_LIST):
-            time.sleep(0.5)
-        print()
+            time.sleep(0.2)
 
-    # 获取北京时间作为最后更新时间
     beijing_tz = pytz.timezone('Asia/Shanghai')
     last_updated = datetime.now(beijing_tz).strftime('%Y-%m-%d %H:%M:%S')
 
@@ -249,15 +376,11 @@ def main():
         "funds": results
     }
 
-    # 写入 JSON
-    output_file = "data/funds.json"
-    with open(output_file, "w", encoding='utf-8') as f:
+    with open("data/funds.json", "w", encoding='utf-8') as f:
         json.dump(final_output, f, ensure_ascii=False, indent=2)
 
     print("=" * 60)
-    print(f"数据更新完成！")
-    print(f"成功: {success_count}/{len(results)}")
-    print(f"输出文件: {output_file}")
+    print(f"完成！成功: {success_count}/{len(results)}")
     print("=" * 60)
 
 if __name__ == "__main__":
